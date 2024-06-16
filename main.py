@@ -1,12 +1,26 @@
 from abc import ABC, abstractmethod
+class Weapon(ABC):
+    @abstractmethod
+    def attack(self):
+        pass
+
+class Sword(Weapon):
+    def attack(self):
+        print("Атакуем: рубит  мечом")
+
+class Bow(Weapon):
+    def attack(self):
+        print("Атакуем: стреляет из  лука стрелами")
+
+
 
 class Fighter():
-    def __init__(self, name, age, weapon):
+    def __init__(self, name, age, weapon: Weapon):
         self.name = name
         self.age = age
         self.weapon = weapon
 
-    def changeWeapon(self, new_weapon):
+    def changeWeapon(self, new_weapon: Weapon):
         self.weapon = new_weapon
 
     def att(self):
@@ -19,23 +33,9 @@ class Monster():
         self.name = name
         self.age = age
 
-class Weapon(ABC):
-    @abstractmethod
-    def attack(self):
-        pass
-
-class Sword(Weapon):
-    def attack(self):
-        print("Атакуем мечом")
-
-class Bow(Weapon):
-    def attack(self):
-        print("Атакуем луком")
-
 
 sw1 = Sword()
-sw2 = Sword()
-b = Bow()
+b1 = Bow()
 
 voin = Fighter("Илья Муромец",33, sw1)
 raz1 = Monster("Соловей Разбойник", 300)
@@ -46,7 +46,7 @@ voin.att()
 print(f"   {raz1.name} повержен ")
 
 print(f"Воин {voin.name}  берет лук")
-voin.changeWeapon(b)
+voin.changeWeapon(b1)
 
 print(f"Воин {voin.name}  сражается с  {raz2.name}")
 voin.att()
